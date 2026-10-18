@@ -1,22 +1,22 @@
 {
   "mission": "QMOOSA-FLASHLOAN-01",
-  "generatedAt": "2026-10-18T10:28:00Z",
+  "generatedAt": "2026-10-18T11:20:00Z",
   "packages": [
     {
       "name": "@qmoosa/flashloan-protocol",
       "version": "1.0.0",
       "repository": "elon00/qmoosa-flashloan-protocol",
-      "sourceCommit": "161e3adefe7c64f2dcfa95fff19f9741f9e055b2",
+      "sourceCommit": "1f0164856e1ff6fb24a75a07a53dc431a50972e6",
       "archivePath": "packages/qmoosa-flashloan-protocol-1.0.0.tgz",
-      "sha256": "c39277a783510d3b5ebcbb066fcd6b060568f193de0aea116d518fe7bfafe5d4"
+      "sha256": "22bf7b5ce0c8a9aa4dd88d3d201995f01879b4ab8853716ce5168af3688e80a3"
     },
     {
       "name": "@qmoosa/flashloan-engine",
       "version": "1.0.0",
       "repository": "elon00/qmoosa-flashloan-engine",
-      "sourceCommit": "63e2d240d5c9fe750d96f5364ced944f198573e6",
+      "sourceCommit": "82759f32b927ed054db7b6f25546cc5e3b93ac25",
       "archivePath": "packages/qmoosa-flashloan-engine-1.0.0.tgz",
-      "sha256": "820ecfd7604ac4864c42845b13c8be598570265a638722ed54e8920058f670cb"
+      "sha256": "f7432ece91f38a143a892d9bdb50ae7c6b1912250f35acbb0d346746de793c73"
     },
     {
       "name": "@qmoosa/flashloan-sdk",

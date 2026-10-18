@@ -156,3 +156,25 @@ test("Negative Control 7: Forged administrative signature fails closed", () => {
     /Cryptographic verification failed/
   );
 });
+
+test("Negative Control 8: Absent repayment options fails closed with immediate rollback (P0)", async () => {
+  const { client } = setupHarness();
+
+  const nonRepayingBorrower = {
+    address: "0xNonRepayingBorrower",
+    async onFlashLoan() {
+      // Returns valid ERC-3156 success hash but does not repay
+      return ERC3156_CALLBACK_SUCCESS;
+    }
+  };
+
+  // Calling without any repayment options MUST fail closed
+  await assert.rejects(
+    () => client.flashLoan(nonRepayingBorrower, "USDC", 2_000_000n),
+    /REPAYMENT_INSUFFICIENT_OR_FAILED/
+  );
+
+  // Liquidity is completely preserved with zero mutation
+  assert.equal(client.getMaxFlashLoan("USDC"), 10_000_000n);
+});
+

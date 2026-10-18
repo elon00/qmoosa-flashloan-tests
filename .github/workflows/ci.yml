@@ -19,14 +19,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: elon00/qmoosa-flashloan-protocol
-          ref: 161e3adefe7c64f2dcfa95fff19f9741f9e055b2
+          ref: 1f0164856e1ff6fb24a75a07a53dc431a50972e6
           path: qmoosa-flashloan-protocol
 
       - name: Checkout engine repository (Pinned Commit)
         uses: actions/checkout@v4
         with:
           repository: elon00/qmoosa-flashloan-engine
-          ref: 63e2d240d5c9fe750d96f5364ced944f198573e6
+          ref: 82759f32b927ed054db7b6f25546cc5e3b93ac25
           path: qmoosa-flashloan-engine
 
       - name: Checkout sdk repository (Pinned Commit)
