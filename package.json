@@ -1,0 +1,31 @@
+{
+  "name": "@qmoosa/flashloan-tests",
+  "version": "1.0.0",
+  "description": "ERC-3156 Flash Loan — Multi-repo integration harness, supply-chain provenance gates & adversarial defense suite",
+  "type": "module",
+  "scripts": {
+    "test:integrity": "node scripts/verify-source-integrity.mjs",
+    "test:integration": "node --test tests/integration.test.mjs",
+    "test:negative": "node --test tests/negative-control.test.mjs",
+    "verify:archive": "node scripts/verify-source-integrity.mjs --mode=archive",
+    "verify:source": "node scripts/verify-source-integrity.mjs --mode=source",
+    "verify:current-head": "node scripts/verify-source-integrity.mjs --mode=current-head",
+    "test": "npm run test:integrity && npm run test:integration && npm run test:negative",
+    "lint": "node --check tests/integration.test.mjs tests/negative-control.test.mjs scripts/verify-source-integrity.mjs"
+  },
+  "dependencies": {
+    "@qmoosa/flashloan-protocol": "file:packages/qmoosa-flashloan-protocol-1.0.0.tgz",
+    "@qmoosa/flashloan-engine": "file:packages/qmoosa-flashloan-engine-1.0.0.tgz",
+    "@qmoosa/flashloan-sdk": "file:packages/qmoosa-flashloan-sdk-1.0.0.tgz"
+  },
+  "keywords": [
+    "qmoosa",
+    "flashloan",
+    "tests",
+    "integration",
+    "reality-gates",
+    "erc-3156"
+  ],
+  "author": "elon00",
+  "license": "MIT"
+}

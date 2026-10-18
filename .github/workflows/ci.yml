@@ -1,0 +1,78 @@
+name: Full-Spectrum Flashloan Reality Gates & Invariant CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  reality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tests repository
+        uses: actions/checkout@v4
+        with:
+          path: qmoosa-flashloan-tests
+
+      - name: Checkout protocol repository (Pinned Commit)
+        uses: actions/checkout@v4
+        with:
+          repository: elon00/qmoosa-flashloan-protocol
+          ref: 161e3adefe7c64f2dcfa95fff19f9741f9e055b2
+          path: qmoosa-flashloan-protocol
+
+      - name: Checkout engine repository (Pinned Commit)
+        uses: actions/checkout@v4
+        with:
+          repository: elon00/qmoosa-flashloan-engine
+          ref: 63e2d240d5c9fe750d96f5364ced944f198573e6
+          path: qmoosa-flashloan-engine
+
+      - name: Checkout sdk repository (Pinned Commit)
+        uses: actions/checkout@v4
+        with:
+          repository: elon00/qmoosa-flashloan-sdk
+          ref: bd7cf4c6b43d3e32e3dd42d569db5555ca73da45
+          path: qmoosa-flashloan-sdk
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: qmoosa-flashloan-tests/package-lock.json
+
+      - name: Install dependencies in sibling repositories
+        run: |
+          npm ci --prefix qmoosa-flashloan-protocol
+          npm ci --prefix qmoosa-flashloan-engine
+          npm ci --prefix qmoosa-flashloan-sdk
+
+      - name: Install dependencies in tests repository
+        working-directory: qmoosa-flashloan-tests
+        run: npm install
+
+      - name: Run Source & Package Integrity Gate (Archive Mode)
+        working-directory: qmoosa-flashloan-tests
+        run: npm run verify:archive
+
+      - name: Run Strict Current-HEAD Alignment Gate
+        working-directory: qmoosa-flashloan-tests
+        run: npm run verify:current-head
+
+      - name: Run Source & Package Integrity Gate (Full Fail-Closed & Canonical Comparison)
+        working-directory: qmoosa-flashloan-tests
+        run: npm run test:integrity
+
+      - name: Run Real Cross-Repository Integration Suite
+        working-directory: qmoosa-flashloan-tests
+        run: npm run test:integration
+
+      - name: Run Negative Control & Adversarial Defense Suite
+        working-directory: qmoosa-flashloan-tests
+        run: npm run test:negative
+
+      - name: Run Static Syntax & Lint Verification
+        working-directory: qmoosa-flashloan-tests
+        run: npm run lint
