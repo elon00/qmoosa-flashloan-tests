@@ -11,26 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout tests repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: qmoosa-flashloan-tests
 
       - name: Checkout protocol repository (Pinned Commit)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: elon00/qmoosa-flashloan-protocol
           ref: 1f0164856e1ff6fb24a75a07a53dc431a50972e6
           path: qmoosa-flashloan-protocol
 
       - name: Checkout engine repository (Pinned Commit)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: elon00/qmoosa-flashloan-engine
           ref: 82759f32b927ed054db7b6f25546cc5e3b93ac25
           path: qmoosa-flashloan-engine
 
       - name: Checkout sdk repository (Pinned Commit)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: elon00/qmoosa-flashloan-sdk
           ref: bd7cf4c6b43d3e32e3dd42d569db5555ca73da45
